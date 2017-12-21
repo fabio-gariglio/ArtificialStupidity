@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Host.Services;
+using Host.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -23,6 +26,8 @@ namespace Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSignalR();
+            services.AddSingleton<IScheduler, Scheduler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +49,11 @@ namespace Host
 
             app.UseStaticFiles();
 
+            app.UseSignalR(routes => 
+            {
+                routes.MapHub<ChatHub>("chat");
+            });   
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -53,7 +63,7 @@ namespace Host
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
-            });
+            });         
         }
     }
 }

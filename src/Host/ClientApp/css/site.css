@@ -1,3 +1,17 @@
 h1 {
     color: dodgerblue;
 }
+
+svg {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.game {
+    width: 500px;
+}
+
+.keyboard {
+    width: 9em;
+}

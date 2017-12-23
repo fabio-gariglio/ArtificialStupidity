@@ -4,9 +4,9 @@ import { HubConnection } from '@aspnet/signalr-client';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { HelloWorld } from './components/HelloWorld';
+import { Game } from './components/Game';
 
 ReactDOM.render(
-    <HelloWorld />,
+    <Game />,
     document.getElementById('react-app')
 );

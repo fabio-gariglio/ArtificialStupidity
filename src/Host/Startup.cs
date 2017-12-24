@@ -28,6 +28,7 @@ namespace Host
             services.AddMvc();
             services.AddSignalR();
             services.AddSingleton<IScheduler, Scheduler>();
+            services.AddSingleton<IGameMapFactory, GameMapFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +52,7 @@ namespace Host
 
             app.UseSignalR(routes => 
             {
-                routes.MapHub<ChatHub>("chat");
+                routes.MapHub<GameHub>("game");
             });   
 
             app.UseMvc(routes =>

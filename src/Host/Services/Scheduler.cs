@@ -13,9 +13,9 @@ namespace Host.Services
     public class Scheduler : IScheduler
     {
         private readonly Timer _timer;
-        private readonly IHubContext<ChatHub> _context;
+        private readonly IHubContext<GameHub> _context;
 
-        public Scheduler(IHubContext<ChatHub> context)
+        public Scheduler(IHubContext<GameHub> context)
         {
             _context = context;
             _timer = new Timer(Run, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
